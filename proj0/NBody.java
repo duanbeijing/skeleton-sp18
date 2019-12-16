@@ -1,6 +1,6 @@
 public class NBody {
 
-    /**读取半径值*/
+    /**read radius*/
     public static double readRadius(String File)
     {
         In in = new In(File);  //In stream
@@ -10,7 +10,7 @@ public class NBody {
         return Radius;
     }
 
-    //planets.txt中的数据依次为 星球个数，半径值，然后是5x6的数据，每行代表一个planet数据，列依次为 x位置，y位置，x速度，y速度，星球质量，星球图片。
+    //planets.txt data are:  planet numbers,radius,5x6 array,data of each raw comes a planet: x_position, y_position, x_velocity, y_velocity, planet mass，planet picture name.
     public static Planet[] readPlanets(String File)
     {
         In in = new In(File);  //In stream
@@ -35,8 +35,8 @@ public class NBody {
     public static  void main(String[] args)
     {
         //Get data
-        double T= Double.parseDouble(args[0]);  //第一个参数
-        double dt= Double.parseDouble(args[1]); //第二个参数
+        double T= Double.parseDouble(args[0]);  //First declared parameter
+        double dt= Double.parseDouble(args[1]); //Second declared parameter
         String filesName =args[2];
         double uniRadius = NBody.readRadius(filesName);
         Planet[] Planets  = NBody.readPlanets(filesName);
@@ -52,12 +52,12 @@ public class NBody {
 
         //draw planets
         for(Planet planet:Planets)
-            planet.draw();  //非静态函数需要实例才能调用
+            planet.draw();  //noo-static method invoked by instance
 
         //start animation
         StdDraw.enableDoubleBuffering();
 
-        //直到t到达T时间
+        //update t until T by step dt
         for(double t=0;t<=T;t+=dt)
         {
             //计算X,Y方向上的合力
@@ -69,7 +69,7 @@ public class NBody {
                 yForces[i]=Planets[i].calcNetForceExertedByY(Planets);
             }
 
-            //更新位置和速度
+            //update velocity and position
             for(int i=0;i<Planets.length;i++)
             {
                 Planets[i].update(dt,xForces[i],yForces[i]);

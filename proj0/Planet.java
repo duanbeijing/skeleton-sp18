@@ -34,7 +34,7 @@ public class Planet
     {
         double dx = this.xxPos - b.xxPos;
         double dy = this.yyPos - b.yyPos;
-        double r = Math.hypot(dx, dy);  //求解直角边对应的斜边
+        double r = Math.hypot(dx, dy);  //Solve for the hypotenuse corresponding to the right Angle
         return r;
     }
 
@@ -86,5 +86,20 @@ public class Planet
         return FyNet;
     }
 
+    //Update velocity and position
+    public void update(double dt, double Fx, double Fy) {
+        double ax = Fx / this.mass;
+        double ay = Fy / this.mass;
+        this.xxVel += ax * dt;
+        this.yyVel += ay * dt;
+        this.xxPos = this.xxPos +this.xxVel * dt;
+        this.yyPos = this.yyPos +this.yyVel * dt;
+    }
+
+    //draw a planet
+    public void draw()
+    {
+        StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
+    }
 
 }
