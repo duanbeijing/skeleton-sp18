@@ -64,12 +64,15 @@ public class Planet
     }
 
     /**
-     * Calcualte the net force in x direction and y direction
+     * Calculate the net force in x direction and y direction
      */
-    public double calcNetForceExertedByX(Planet[] bs) {
+    public double calcNetForceExertedByX(Planet[] bs)
+    {
         double FxNet = 0;
-        for (Planet b : bs) {
-            if (!this.equals(b)) {
+        for (Planet b : bs)
+        {
+            if (!this.equals(b))
+            {
                 FxNet += this.calcForceExertedByX(b);
             }
         }
@@ -101,5 +104,5 @@ public class Planet
     {
         StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
     }
-
 }
+
